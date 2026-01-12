@@ -53,11 +53,11 @@ langs = {
     "Tamil": "ta"
 }
 
-user_choice = st.selectbox("Choose language", list(langs.keys()))
-if not user_choice:
-    st.warning('Please select a language')
+options = ["-- Select language --"] + list(langs.keys())
+user_choice = st.selectbox("Choose language", options)
+if user_choice == "-- Select language --":
+    st.info("Please select a language to continue.")
     st.stop()
-st.success('Press Submit')
 
 selected_lang = langs[user_choice]
 
@@ -69,6 +69,8 @@ ydl_opts = {
     "no_warnings": True,
     "writesubtitles": True,
     "writeautomaticsub": True,
+    "sleep_interval": 5,
+    "ignoreerrors": True,
     "skip_download": True,
     "subtitleslangs": [selected_lang],
     "outtmpl": "subtitle.%(ext)s",

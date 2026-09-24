@@ -100,7 +100,7 @@ chunks = splitter.create_documents([cleaned])
 # ======================================================================
 #  EMBEDDING + VECTOR STORE + RETRIEVER
 # ======================================================================
-embedding = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
+embedding = HuggingFaceEmbeddings(model_name='sentence-transformers you add your model name')
 vector_store = FAISS.from_documents(chunks, embedding)
 retriever = vector_store.as_retriever(search_type='similarity', search_kwargs={'k': 4})
 
